@@ -1,16 +1,25 @@
 import string
 
+
 alfa = list(string.ascii_lowercase)
-n = 2
 d = {}
 
-for x,y in enumerate(alfa):
-    d[x+1] = y
+step = 2
 
-text_in = 'Hello Kitty'
-text_out = text_in
-print(d)
-for i in range(len(text_in)):
-    text_out[i] = d[i+1]
+track = 0
+for x, y in enumerate(alfa):
+    d[y] = x+step
+    if x > len(alfa)-step-1:
+        d[y] = track
+        track += 1
+
+text_out = ''
+text_in = list('How are you doing'.lower())
+
+for i in text_in:
+    if i == ' ':
+        text_out += ' '
+        continue
+    text_out += alfa[d[i]]
 
 print(text_out)
